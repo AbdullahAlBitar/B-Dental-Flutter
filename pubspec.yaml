@@ -1,0 +1,35 @@
+name: b_dental
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.4.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  fluttericon: ^2.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  shared_preferences: ^2.0.8
+  
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+
+  fonts:
+    - family: Paprika
+      fonts:
+        - asset: fonts/Paprika-Regular.ttf
+    - family: SpicyRice
+      fonts:
+        - asset: fonts/SpicyRice-Regular.ttf
+
