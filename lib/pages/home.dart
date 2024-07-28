@@ -8,8 +8,6 @@ import 'package:b_dental/pages/user/Visit.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -18,22 +16,22 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   Color colorLight = globalColorLight;
   Color colorDark = globalColorDark;
 
+  TextStyle labelStyle = TextStyle(color: Colors.white);
+
   int currentIndex = 0;
-  final List<Widget> screens=[
-    Doctor(),
-    Patient(),
-    Visit(),
-    Payment()
-  ];
-  final List<Widget> desNav=[
-    NavigationDestination(icon: Icon(Icons.account_circle_outlined), label: "Doctor"),
-    NavigationDestination(icon: Icon(Icons.sick_outlined), label: "Patients"),
-    NavigationDestination(icon: Icon(Icons.view_timeline_outlined), label: "Visits"),
-    NavigationDestination(icon: Icon(Icons.payments_outlined), label: "Payments"),
+  final List<Widget> screens = [Doctor(), Patient(), Visit(), Payment()];
+
+  final List<BottomNavigationBarItem> desNav = [
+    BottomNavigationBarItem(
+        icon: Icon(Icons.account_circle_outlined), label: "Doctor"),
+    BottomNavigationBarItem(icon: Icon(Icons.sick_outlined), label: "Patients"),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.view_timeline_outlined), label: "Visits"),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.payments_outlined), label: "Payments"),
   ];
 
   @override
@@ -41,7 +39,8 @@ class _HomeState extends State<Home> {
     super.initState();
     printUser();
   }
-  void printUser() async{
+
+  void printUser() async {
     print((await SharedPreferences.getInstance()).getString("username"));
   }
 
@@ -49,15 +48,19 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[currentIndex],
-      bottomNavigationBar: NavigationBar(
-        indicatorColor: colorDark,
-        backgroundColor: Colors.white,
-        destinations: desNav,
-        selectedIndex: currentIndex,
-        onDestinationSelected: (index) =>setState(() {
-          currentIndex = index;
-        }),
-
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: currentIndex,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        items: desNav,
+        backgroundColor: globalColorDarker,
+        unselectedItemColor: globalColorDark,
+        selectedItemColor: globalColorLight,
+        elevation: 5,
       ),
     );
   }
