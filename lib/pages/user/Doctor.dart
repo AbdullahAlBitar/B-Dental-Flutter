@@ -19,7 +19,6 @@ class _DoctorState extends State<Doctor> {
   }
 
   Color colorLight = globalColorLight;
-  Color colorDark = globalColorDark;
 
   @override
   Widget build(BuildContext context) {

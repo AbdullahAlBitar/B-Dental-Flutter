@@ -17,7 +17,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Color colorLight = globalColorLight;
-  Color colorDark = globalColorDark;
 
   TextStyle labelStyle = TextStyle(color: Colors.white);
 
@@ -57,8 +56,8 @@ class _HomeState extends State<Home> {
           });
         },
         items: desNav,
-        backgroundColor: globalColorDarker,
-        unselectedItemColor: globalColorDark,
+        backgroundColor: globalColorDark,
+        unselectedItemColor: Colors.cyanAccent.shade700,
         selectedItemColor: globalColorLight,
         elevation: 5,
       ),

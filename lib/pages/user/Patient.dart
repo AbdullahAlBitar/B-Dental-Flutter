@@ -25,7 +25,7 @@ class _PatientState extends State<Patient> {
         floatingActionButton: Container(
           padding: const EdgeInsets.all(5),
           decoration:
-              BoxDecoration(shape: BoxShape.circle, color: globalColorDarker),
+              BoxDecoration(shape: BoxShape.circle, color: globalColorDark),
           child: IconButton(
             onPressed: () {},
             icon: const Icon(Icons.person_add_alt_outlined, size: 30,),

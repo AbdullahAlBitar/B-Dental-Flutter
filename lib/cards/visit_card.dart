@@ -13,7 +13,7 @@ class VisitCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: globalColorDarker,
+      color: globalColorDark,
       margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
       child: Row(
         children: <Widget>[
