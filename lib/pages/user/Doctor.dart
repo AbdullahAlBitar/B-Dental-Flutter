@@ -2,6 +2,8 @@ import 'package:b_dental/cards/visit_card.dart';
 import 'package:b_dental/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Doctor extends StatefulWidget {
   const Doctor({super.key});
@@ -16,6 +18,64 @@ class _DoctorState extends State<Doctor> {
     setState(() {
       Navigator.pop(context);
     });
+  }
+
+  String jwt = "";
+  String name = "";
+  String phone = "";
+  String dues = "";
+  List visits = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getUserInfo();
+  }
+
+  Future<void> getUserInfo() async {
+    SharedPreferences logindata = await SharedPreferences.getInstance();
+    jwt = logindata.getString('jwt') ?? '';
+    if (jwt.isEmpty) {
+      Navigator.pushNamed(context, "/");
+    }
+
+    try {
+      final response = await http.post(
+        Uri.parse('$Url/doctors/profile'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'jwt': jwt,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final res = jsonDecode(response.body);
+        setState(() {
+          name = res['name'];
+          phone = res['phone'];
+          dues = res['dues'].toString().substring(0, res['dues'].toString().indexOf(".") + 3);
+          visits = res['visits'];
+        });
+
+        return;
+      } else {
+        final res = jsonDecode(response.body);
+        print("code ${response.statusCode} error: $res");
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Login failed. Please try again.')),
+        );
+
+        logindata.setBool('login', true);
+        Navigator.pushNamed(context, "/");
+
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Network error. Please try again later.')),
+      );
+    }
   }
 
   Color colorLight = globalColorLight;
@@ -48,9 +108,9 @@ class _DoctorState extends State<Doctor> {
                               fontSize: 20,
                               decoration: TextDecoration.none),
                         ),
-                        const Text(
-                          'Yousof',
-                          style: TextStyle(
+                        Text(
+                          name,
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: 28,
                               decoration: TextDecoration.none),
@@ -61,7 +121,7 @@ class _DoctorState extends State<Doctor> {
                       height: 10,
                     ),
                     Text(
-                      "0994669593",
+                      phone,
                       style: TextStyle(
                           color: colorLight,
                           fontSize: 20,
@@ -93,9 +153,9 @@ class _DoctorState extends State<Doctor> {
                           fontSize: 20,
                           decoration: TextDecoration.none),
                     ),
-                    const Text(
-                      '1000000000',
-                      style: TextStyle(
+                    Text(
+                      dues,
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                           decoration: TextDecoration.none),
@@ -119,7 +179,9 @@ class _DoctorState extends State<Doctor> {
                       fontSize: 20,
                       decoration: TextDecoration.none),
                 ),
-                const SizedBox( height: 10,), 
+                const SizedBox(
+                  height: 10,
+                ),
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
@@ -129,12 +191,10 @@ class _DoctorState extends State<Doctor> {
                   height: 200,
                   child: SingleChildScrollView(
                     child: Column(
-                      children: [
-                        VisitCard(1, "avsvsrv", 123456, DateTime(2002)),
-                        VisitCard(1, "avsvsrv", 123456, DateTime(2002)),
-                        VisitCard(1, "avsvsrv", 123456, DateTime(2002)),
-                        VisitCard(1, "avsvsrv", 123456, DateTime(2002)),
-                      ],
+                      children: visits
+                          .map((v) => VisitCard(
+                              v['id'], v['name'], v['charge'], DateTime.parse(v['date'])))
+                          .toList(),
                     ),
                   ),
                 ),
@@ -151,7 +211,7 @@ class _DoctorState extends State<Doctor> {
                       size: 36,
                     )),
               ],
-            )
+            ),
           ],
         ),
       ),
