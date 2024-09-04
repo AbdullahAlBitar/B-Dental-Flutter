@@ -4,7 +4,7 @@ import 'package:b_dental/globals.dart';
 import 'package:b_dental/pages/user/doctor.dart';
 import 'package:b_dental/pages/user/patient.dart';
 import 'package:b_dental/pages/user/payment.dart';
-import 'package:b_dental/pages/user/Visit.dart';
+import 'package:b_dental/pages/user/visit.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

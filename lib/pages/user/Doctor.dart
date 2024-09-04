@@ -41,7 +41,7 @@ class _DoctorState extends State<Doctor> {
 
     try {
       final response = await http.post(
-        Uri.parse('$Url/doctors/profile'),
+        Uri.parse('$url/doctors/profile'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

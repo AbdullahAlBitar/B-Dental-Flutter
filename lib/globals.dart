@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const Url = "http://192.168.100.182:3000";
+const url = "http://192.168.100.182:3000";
 
 Color globalColorDark =const Color.fromARGB(255, 0, 69, 75);
 Color globalColorLight =Colors.cyanAccent;
