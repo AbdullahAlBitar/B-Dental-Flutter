@@ -6,7 +6,6 @@ import 'package:b_dental/pages/home/patient.dart';
 import 'package:b_dental/pages/home/payment.dart';
 import 'package:b_dental/pages/home/visit.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -36,11 +35,6 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    printUser();
-  }
-
-  void printUser() async {
-    print((await SharedPreferences.getInstance()).getString("username"));
   }
 
   @override

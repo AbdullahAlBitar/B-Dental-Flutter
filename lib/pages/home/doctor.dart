@@ -57,7 +57,7 @@ class _DoctorState extends State<Doctor> {
           phone = res['phone'];
           dues = res['dues'].toString();
           if(dues.contains(".")){
-            dues = res['dues'].toString().substring(0, res['dues'].toString().indexOf(".") + 3);
+            dues = res['dues'].toString().substring(0, res['dues'].toString().indexOf("."));
           }
           visits = res['visits'];
         });
