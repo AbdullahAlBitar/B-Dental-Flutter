@@ -2,13 +2,16 @@
 import 'package:b_dental/globals.dart';
 import 'package:flutter/material.dart';
 
-class VisitCard extends StatelessWidget {
+class PaymentCard extends StatelessWidget {
   final int id;
-  final String name;
-  final double charge;
+  final int patientId;
+  final String patientName;
+  final int doctorId;
+  final String doctorName;
+  final double amount;
   final DateTime date;
 
-  const VisitCard(this.id, this.name, this.charge, this.date, {super.key});
+  const PaymentCard(this.id, this.patientId, this.patientName, this.doctorId, this.doctorName, this.amount, this.date, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,15 +33,31 @@ class VisitCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                name,
-                style: TextStyle(
-                  fontSize: 20,
-                  color: globalColorLight,
-                ),
+              Row(
+                children: [
+                  Text(
+                    patientName,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: globalColorLight,
+                    ),
+                  ),
+                  const Icon(
+                    Icons.double_arrow_outlined,
+                    color: Colors.white,
+                    size: 15,
+                  ),
+                  Text(
+                    doctorName,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: globalColorLight,
+                    ),
+                  ),
+                ],
               ),
               Text(
-                "${charge.toString().substring(0, charge.toString().indexOf("."))} SYP",
+                "${amount.toString().substring(0, amount.toString().indexOf("."))} SYP",
                 style: const TextStyle(
                   fontSize: 15,
                   color: Colors.white,

@@ -55,16 +55,18 @@ class _DoctorState extends State<Doctor> {
         setState(() {
           name = res['name'];
           phone = res['phone'];
-          dues = res['dues'].toString().substring(0, res['dues'].toString().indexOf(".") + 3);
+          dues = res['dues'].toString();
+          if(dues.contains(".")){
+            dues = res['dues'].toString().substring(0, res['dues'].toString().indexOf(".") + 3);
+          }
           visits = res['visits'];
         });
 
         return;
       } else {
         final res = jsonDecode(response.body);
-        print("code ${response.statusCode} error: $res");
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Login failed. Please try again.')),
+          SnackBar(content: Text(res["error"])),
         );
 
         logindata.setBool('login', true);
