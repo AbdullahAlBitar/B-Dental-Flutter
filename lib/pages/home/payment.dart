@@ -20,11 +20,11 @@ class _PaymentState extends State<Payment> {
 
 
   final List<PaymentCard> payments = [
-                        PaymentCard(1, 1, "p1", 1, "d1", 500000, DateTime.now()),
-                        PaymentCard(1, 1, "abdullah", 1, "yousof", 500000, DateTime.now()),
-                        PaymentCard(1, 1, "p1", 1, "d1", 500000, DateTime.now()),
-                        PaymentCard(1, 1, "p1", 1, "d1", 500000, DateTime.now()),
-                        PaymentCard(1, 1, "p1", 1, "d1", 500000, DateTime.now()),
+                        PaymentCard(1, "p1", "d1", 500000, DateTime.now()),
+                        PaymentCard(1, "abdah", "yousof", 500000, DateTime.now()),
+                        PaymentCard(1, "p1", "d1", 500000, DateTime.now()),
+                        PaymentCard(1, "p1", "d1", 500000, DateTime.now()),
+                        PaymentCard(1, "p1", "d1", 500000, DateTime.now()),
                       ];
 
   @override

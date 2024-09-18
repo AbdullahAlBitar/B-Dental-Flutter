@@ -51,7 +51,9 @@ class PatientCard extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerRight,
               child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/patientDetails", arguments: id);
+                  },
                   icon: Icon(
                     Icons.info_outline,
                     color: globalColorLight,

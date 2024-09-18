@@ -20,8 +20,8 @@ class _PatientState extends State<Patient> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return 
+      Scaffold(
         floatingActionButton: Container(
           padding: const EdgeInsets.all(5),
           decoration:
@@ -63,7 +63,7 @@ class _PatientState extends State<Patient> {
                   child: const SingleChildScrollView(
                     child: Column(
                       children: [
-                        PatientCard(1, "avsvsrv", "0912345678", 1),
+                        PatientCard(51, "avsvsrv", "0912345678", 1),
                         PatientCard(1, "avsvsrv", "0912345678", 1),
                         PatientCard(1, "avsvsrv", "0912345678", 0),
                         PatientCard(1, "avsvsrv", "0912345678", 0),
@@ -82,7 +82,7 @@ class _PatientState extends State<Patient> {
             ),
           ),
         ),
-      ),
-    );
+      );
+    
   }
 }
