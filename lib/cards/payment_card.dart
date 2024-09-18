@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 
 class PaymentCard extends StatelessWidget {
   final int id;
-  final int patientId;
   final String patientName;
-  final int doctorId;
   final String doctorName;
   final double amount;
   final DateTime date;
 
-  const PaymentCard(this.id, this.patientId, this.patientName, this.doctorId, this.doctorName, this.amount, this.date, {super.key});
+  const PaymentCard(this.id, this.patientName, this.doctorName, this.amount, this.date, {super.key});
 
   @override
   Widget build(BuildContext context) {
