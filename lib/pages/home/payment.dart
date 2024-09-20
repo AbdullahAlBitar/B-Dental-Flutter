@@ -18,14 +18,13 @@ class _PaymentState extends State<Payment> {
     });
   }
 
-
   final List<PaymentCard> payments = [
-                        PaymentCard(1, "p1", "d1", 500000, DateTime.now()),
-                        PaymentCard(1, "abdah", "yousof", 500000, DateTime.now()),
-                        PaymentCard(1, "p1", "d1", 500000, DateTime.now()),
-                        PaymentCard(1, "p1", "d1", 500000, DateTime.now()),
-                        PaymentCard(1, "p1", "d1", 500000, DateTime.now()),
-                      ];
+    PaymentCard(1, "p1", "d1", 500000, DateTime.now()),
+    PaymentCard(1, "abdah", "yousof", 500000, DateTime.now()),
+    PaymentCard(1, "p1", "d1", 500000, DateTime.now()),
+    PaymentCard(1, "p1", "d1", 500000, DateTime.now()),
+    PaymentCard(1, "p1", "d1", 500000, DateTime.now()),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,10 @@ class _PaymentState extends State<Payment> {
               BoxDecoration(shape: BoxShape.circle, color: globalColorDark),
           child: IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.attach_money, size: 30,),
+            icon: const Icon(
+              Icons.attach_money,
+              size: 30,
+            ),
             color: globalColorLight,
           ),
         ),

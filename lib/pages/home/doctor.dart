@@ -84,10 +84,10 @@ class _DoctorState extends State<Doctor> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: globalDarkBG,
+        body: SingleChildScrollView(
       child: Container(
-        height: MediaQuery.of(context).size.height - 50,
         color: globalDarkBG,
         padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
         child: Column(
@@ -202,6 +202,7 @@ class _DoctorState extends State<Doctor> {
                 ),
               ],
             ),
+            const SizedBox(height: 10,),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

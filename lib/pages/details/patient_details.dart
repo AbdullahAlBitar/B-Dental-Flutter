@@ -97,8 +97,9 @@ class _PatientDetailsState extends State<PatientDetails> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: globalDarkBG,
+      body: SingleChildScrollView(
         child: Container(
           color: globalDarkBG,
           padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
@@ -236,14 +237,17 @@ class _PatientDetailsState extends State<PatientDetails> {
                   ),
                 ],
               ),
+              const SizedBox(height: 10,),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   IconButton(
-                    onPressed: logOut,
-                    icon: const Icon(
-                      Icons.logout_outlined,
-                      color: Colors.red,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
+                      Icons.arrow_back_outlined,
+                      color: colorLight,
                       size: 36,
                     ),
                   ),
