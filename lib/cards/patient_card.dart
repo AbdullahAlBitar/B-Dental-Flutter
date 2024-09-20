@@ -17,17 +17,23 @@ class PatientCard extends StatelessWidget {
       child: Row(
         children: <Widget>[
           const SizedBox(width: 10),
-          Icon(
-            sex == 1? Icons.person : Icons.person_2,
-            color: sex == 1? Colors.blue : Colors.pink,
-            size: 26,
-          ),
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/patientDetails", arguments: id);
+              },
+              icon: Icon(
+                Icons.info_outline,
+                color: globalColorLight,
+                size: 26,
+              )),
           const SizedBox(width: 7),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const SizedBox(height: 5,),
+              const SizedBox(
+                height: 5,
+              ),
               Text(
                 name,
                 style: TextStyle(
@@ -51,15 +57,11 @@ class PatientCard extends StatelessWidget {
           Expanded(
             child: Align(
               alignment: Alignment.centerRight,
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/patientDetails", arguments: id);
-                  },
-                  icon: Icon(
-                    Icons.info_outline,
-                    color: globalColorLight,
-                    size: 26,
-                  )),
+              child: Icon(
+                sex == 1 ? Icons.person : Icons.person_2,
+                color: sex == 1 ? Colors.blue : Colors.pink,
+                size: 26,
+              ),
             ),
           ),
           const SizedBox(
