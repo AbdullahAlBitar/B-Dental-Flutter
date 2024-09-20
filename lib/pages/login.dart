@@ -10,7 +10,7 @@ Future<Map<String, dynamic>> login(String username, String password) async {
   if (username.isNotEmpty && password.isNotEmpty) {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.100.182:3000/auth/login'),
+        Uri.parse('$url/auth/login'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

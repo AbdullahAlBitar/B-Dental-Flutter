@@ -197,8 +197,11 @@ class _PatientDetailsState extends State<PatientDetails> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: visits
-                            .map((v) => VisitCard(v['id'], v['name'],
-                                v['charge'], DateTime.parse(v['date'])))
+                            .map((v) => VisitCard(
+                              v['id'],
+                              v['name'],
+                              v['charge'],
+                              DateTime.parse(v['date'])))
                             .toList(),
                       ),
                     ),
@@ -221,7 +224,12 @@ class _PatientDetailsState extends State<PatientDetails> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: payments
-                            .map((p) => PaymentCard(p['id'], name, p['Doctor']['name'], p['amount'], DateTime.parse(p['date'])))
+                            .map((p) => PaymentCard(
+                                p['id'],
+                                name,
+                                p['Doctor']['name'],
+                                p['amount'],
+                                DateTime.parse(p['date'])))
                             .toList(),
                       ),
                     ),
