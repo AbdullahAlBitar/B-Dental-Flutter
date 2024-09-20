@@ -1,4 +1,3 @@
-
 import 'package:b_dental/globals.dart';
 import 'package:flutter/material.dart';
 
@@ -28,9 +27,10 @@ class PaymentCard extends StatelessWidget {
               )),
           const SizedBox(width: 5),
           Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              const SizedBox(height: 5,),
               Row(
                 children: [
                   Text(

@@ -30,10 +30,11 @@ class VisitCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              const SizedBox(height: 5,),
               Text(
                 name,
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 18,
                   color: globalColorLight,
                 ),
               ),

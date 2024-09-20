@@ -27,6 +27,7 @@ class PatientCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              const SizedBox(height: 5,),
               Text(
                 name,
                 style: TextStyle(
