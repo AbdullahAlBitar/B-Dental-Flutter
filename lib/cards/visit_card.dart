@@ -19,7 +19,9 @@ class VisitCard extends StatelessWidget {
         children: <Widget>[
           const SizedBox(width: 5),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                    Navigator.pushNamed(context, "/visitDetails", arguments: id);
+              },
               icon: Icon(
                 Icons.info_outline,
                 color: globalColorLight,
