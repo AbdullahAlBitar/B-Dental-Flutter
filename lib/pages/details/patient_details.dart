@@ -199,10 +199,10 @@ class _PatientDetailsState extends State<PatientDetails> {
                       child: Column(
                         children: visits
                             .map((v) => VisitCard(
-                              v['id'],
-                              v['name'],
-                              v['charge'],
-                              DateTime.parse(v['date'])))
+                                v['id'],
+                                v['name'],
+                                double.parse("${v['charge']}"),
+                                DateTime.parse(v['date'])))
                             .toList(),
                       ),
                     ),
@@ -229,7 +229,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                                 p['id'],
                                 name,
                                 p['Doctor']['name'],
-                                p['amount'],
+                                double.parse("${p['amount']}"),
                                 DateTime.parse(p['date'])))
                             .toList(),
                       ),
@@ -237,49 +237,52 @@ class _PatientDetailsState extends State<PatientDetails> {
                   ),
                 ],
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               Container(
-                  decoration: BoxDecoration(
+                decoration: BoxDecoration(
                     border: Border.all(color: globalColorLight, width: 5),
                     borderRadius: BorderRadius.circular(8),
-                    color: globalBG
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(
-                          Icons.arrow_back_outlined,
-                          color: colorLight,
-                          size: 36,
-                        ),
+                    color: globalBG),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(
+                        Icons.arrow_back_outlined,
+                        color: colorLight,
+                        size: 36,
                       ),
-                      IconButton(
-                        onPressed: () {
-                          Navigator.popUntil(context, ModalRoute.withName('/home'));
-                        },
-                        icon: Icon(
-                          Icons.home,
-                          color: colorLight,
-                          size: 36,
-                        ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.popUntil(
+                            context, ModalRoute.withName('/home'));
+                      },
+                      icon: Icon(
+                        Icons.home,
+                        color: colorLight,
+                        size: 36,
                       ),
-                      IconButton(
-                        onPressed: () {
-                          Navigator.popUntil(context, ModalRoute.withName('/home'));
-                        },
-                        icon: const Icon(
-                          Icons.delete_outline,
-                          color: Colors.red,
-                          size: 36,
-                        ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.popUntil(
+                            context, ModalRoute.withName('/home'));
+                      },
+                      icon: const Icon(
+                        Icons.delete_outline,
+                        color: Colors.red,
+                        size: 36,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
+              ),
             ],
           ),
         ),

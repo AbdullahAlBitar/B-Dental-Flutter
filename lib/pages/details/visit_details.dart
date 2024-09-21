@@ -25,7 +25,7 @@ class _VisitDetailsState extends State<VisitDetails> {
   String name = "";
   String description = "";
   String charge = "";
-  String date = "";
+  String date = "             ";
   String doctorName = "";
   int patientId = 0;
   String patientName = "";
