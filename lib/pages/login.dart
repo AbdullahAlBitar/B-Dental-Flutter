@@ -28,7 +28,8 @@ Future<Map<String, dynamic>> login(String username, String password) async {
         await logindata.setString('jwt', jwt);
         return {'success': true, 'jwt': jwt};
       } else {
-        return {'success': false, 'message': 'Login failed. Please try again.'};
+        final res = jsonDecode(response.body);
+        return {'success': false, 'message': res['error']};
       }
     } catch (e) {
       return {
@@ -73,8 +74,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         body: SingleChildScrollView(
           child: Container(
             color: globalDarkBG,
@@ -239,7 +239,6 @@ class _LoginState extends State<Login> {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

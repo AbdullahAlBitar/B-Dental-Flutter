@@ -61,12 +61,10 @@ class _DoctorState extends State<Doctor> {
           }
           visits = res['visits'];
         });
-
-        return;
       } else {
         final res = jsonDecode(response.body);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(res["error"])),
+          SnackBar(content: Text(res['error'])),
         );
 
         logindata.setBool('login', true);
