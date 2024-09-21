@@ -144,6 +144,20 @@ class _VisitDetailsState extends State<VisitDetails> {
                       fontSize: 20,
                       decoration: TextDecoration.none),
                 ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      date.substring(0, 10),
+                      softWrap: true,
+                      style: TextStyle(
+                          color: globalColorLight,
+                          fontSize: 14,
+                          decoration: TextDecoration.none),
+                    ),
+                  ],
+                ),
                 const Divider(color: Colors.white),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -197,20 +211,47 @@ class _VisitDetailsState extends State<VisitDetails> {
                     const SizedBox(height: 20),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_outlined,
-                        color: colorLight,
-                        size: 36,
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: globalColorLight, width: 5),
+                    borderRadius: BorderRadius.circular(8),
+                    color: globalBG
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(
+                          Icons.arrow_back_outlined,
+                          color: colorLight,
+                          size: 36,
+                        ),
                       ),
-                    ),
-                  ],
+                      IconButton(
+                        onPressed: () {
+                          Navigator.popUntil(context, ModalRoute.withName('/home'));
+                        },
+                        icon: Icon(
+                          Icons.home,
+                          color: colorLight,
+                          size: 36,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.popUntil(context, ModalRoute.withName('/home'));
+                        },
+                        icon: const Icon(
+                          Icons.delete_outline,
+                          color: Colors.red,
+                          size: 36,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

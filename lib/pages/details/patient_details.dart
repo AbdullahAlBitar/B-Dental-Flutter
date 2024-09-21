@@ -237,22 +237,49 @@ class _PatientDetailsState extends State<PatientDetails> {
                   ),
                 ],
               ),
-              const SizedBox(height: 10,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(
-                      Icons.arrow_back_outlined,
-                      color: colorLight,
-                      size: 36,
-                    ),
+              const SizedBox(height: 20,),
+              Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: globalColorLight, width: 5),
+                    borderRadius: BorderRadius.circular(8),
+                    color: globalBG
                   ),
-                ],
-              ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(
+                          Icons.arrow_back_outlined,
+                          color: colorLight,
+                          size: 36,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.popUntil(context, ModalRoute.withName('/home'));
+                        },
+                        icon: Icon(
+                          Icons.home,
+                          color: colorLight,
+                          size: 36,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.popUntil(context, ModalRoute.withName('/home'));
+                        },
+                        icon: const Icon(
+                          Icons.delete_outline,
+                          color: Colors.red,
+                          size: 36,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
             ],
           ),
         ),
