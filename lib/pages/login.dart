@@ -1,7 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'dart:async';
-
 import 'package:b_dental/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,18 +8,11 @@ import 'dart:convert';
 Future<Map<String, dynamic>> login(String username, String password) async {
   if (username.isNotEmpty && password.isNotEmpty) {
     try {
-      final response = await http
-          .post(
+      final response = await http.post(
         Uri.parse('$url/auth/login'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(<String, String>{
-          'phone': username,
-          'password': password,
-        }),
-      )
-          .timeout(Duration(seconds: 5), onTimeout: () {
+        headers: <String, String>{'Content-Type': 'application/json'},
+        body: jsonEncode(<String, String>{'phone': username, 'password': password}),
+      ).timeout(const Duration(seconds: 5), onTimeout: () {
         throw TimeoutException('Request timed out');
       });
 
@@ -38,21 +28,12 @@ Future<Map<String, dynamic>> login(String username, String password) async {
         return {'success': false, 'message': res['error']};
       }
     } on TimeoutException catch (_) {
-      return {
-        'success': false,
-        'message': 'Request timed out. Please try again.'
-      };
+      return {'success': false, 'message': 'Request timed out. Please try again.'};
     } catch (e) {
-      return {
-        'success': false,
-        'message': 'Network error. Please try again later.'
-      };
+      return {'success': false, 'message': 'Network error. Please try again later.'};
     }
   }
-  return {
-    'success': false,
-    'message': 'Username and password cannot be empty.'
-  };
+  return {'success': false, 'message': 'Username and password cannot be empty.'};
 }
 
 class Login extends StatefulWidget {
@@ -87,177 +68,94 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          color: globalDarkBG,
-          height: MediaQuery.of(context).size.height,
-          padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(20.0),
-                decoration: BoxDecoration(
-                  color: globalBG,
-                  border: Border.all(color: globalColorLight, width: 5),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      height: 180,
-                      decoration: BoxDecoration(
-                        color: globalColorDark,
-                        border: Border.all(color: globalColorLight, width: 3),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      margin: EdgeInsets.all(10),
-                      child: Center(
-                        child: Text(
-                          "B-Dental",
-                          style: TextStyle(
-                              backgroundColor: globalColorDark,
-                              fontSize: 34,
-                              color: globalColorLight,
-                              fontFamily: "SpicyRice"),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 40),
-                    Column(
-                      children: [
-                        TextField(
-                          cursorColor: globalColorLight,
-                          style: TextStyle(
-                            color: globalColorLight, 
-                            fontFamily: "Paprika"),
-                          decoration: InputDecoration(
-                            suffixIconColor: globalColorLight,
-                            filled: true,
-                            fillColor: globalColorDark,
-                            hintText: "Username",
-                            hintStyle: TextStyle(
-                              color: globalColorLight,
-                              fontFamily: "Paprika"),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: globalColorDark, width: 3),
-                              borderRadius: BorderRadius.circular(10)),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: globalColorLight, width: 3),
-                              borderRadius: BorderRadius.circular(10)),
-                            suffixIcon: IconButton(
-                              icon: Icon(Icons.clear),
-                              onPressed: () => _controllerUsername.clear(),
-                            )),
-                          controller: _controllerUsername,
-                        ),
-                        SizedBox(height: 30),
-                        TextField(
-                          obscureText: true,
-                          cursorColor: globalColorLight,
-                          style: TextStyle(
-                              color: globalColorLight, 
-                              fontFamily: "Paprika"
-                              ),
-                          decoration: InputDecoration(
-                              suffixIconColor: globalColorLight,
-                              filled: true,
-                              fillColor: globalColorDark,
-                              hintText: "Password",
-                              hintStyle: TextStyle(
-                                  color: globalColorLight,
-                                  fontFamily: "Paprika"),
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: globalColorDark, width: 3),
-                                  borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: globalColorLight, width: 3),
-                                  borderRadius: BorderRadius.circular(10)),
-                              suffixIcon: IconButton(
-                                icon: Icon(Icons.clear),
-                                onPressed: () => _controllerPassword.clear(),
-                              )),
-                          controller: _controllerPassword,
-                        ),
-                        SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            TextButton(
-                              child: Text(
-                                "SignUp?",
-                                style: TextStyle(color: globalColorLight),
-                              ),
-                              onPressed: () {},
-                            ),
-                            TextButton(
-                              style: ButtonStyle(
-                                backgroundColor: WidgetStateProperty.all<Color>(
-                                    globalColorDark),
-                              ),
-                              onPressed: _isButtonDisabled
-                                  ? null
-                                  : () async {
-                                      setState(() {
-                                        _isButtonDisabled = true;
-                                      });
-
-                                      String username =
-                                          _controllerUsername.text;
-                                      String password =
-                                          _controllerPassword.text;
-                                      Map<String, dynamic> result =
-                                          await login(username, password);
-
-                                      if (mounted) {
-                                        if (result['success']) {
-                                          _controllerPassword.clear();
-                                          _controllerUsername.clear();
-                                          Navigator.pushNamed(context, "/home");
-                                        } else {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                                content:
-                                                    Text(result['message'])),
-                                          );
-                                        }
-                                      }
-                                      setState(() {
-                                        _isButtonDisabled = false;
-                                      });
-                                    },
-                              child: Container(
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  border:
-                                      Border.all(width: 2, color: Colors.white),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Text(
-                                  "LogIn",
-                                  style: TextStyle(
-                                    fontFamily: "Paprika",
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    )
-                  ],
+      backgroundColor: globalDarkBG,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "B-Dental",
+              style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold, color: globalColorLight),
+            ),
+            const SizedBox(height: 40),
+            TextField(
+              controller: _controllerUsername,
+              cursorColor: globalColorLight,
+              style: TextStyle(color: globalColorLight),
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: globalBG,
+                hintText: "Username",
+                hintStyle: TextStyle(color: globalColorLight),
+                focusedBorder: OutlineInputBorder(borderSide: BorderSide(
+                    color: globalColorLight
+                  )),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 20),
+            TextField(
+              controller: _controllerPassword,
+              obscureText: true,
+              cursorColor: globalColorLight,
+              style: TextStyle(color: globalColorLight),
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: globalBG,
+                hintText: "Password",
+                hintStyle: TextStyle(color: globalColorLight),
+                focusedBorder: OutlineInputBorder(borderSide: BorderSide(
+                    color: globalColorLight
+                  )),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/register");
+                  }, // Handle signup
+                  child: Text("Sign Up?", style: TextStyle(color: globalColorLight)),
+                ),
+                ElevatedButton(
+                  onPressed: _isButtonDisabled ? null : () async {
+                    setState(() {
+                      _isButtonDisabled = true;
+                    });
+                    String username = _controllerUsername.text;
+                    String password = _controllerPassword.text;
+                    Map<String, dynamic> result = await login(username, password);
+                    if (mounted) {
+                      if (result['success']) {
+                        _controllerUsername.clear();
+                        _controllerPassword.clear();
+                        Navigator.pushNamed(context, "/home");
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(result['message'])),
+                        );
+                      }
+                    }
+                    setState(() {
+                      _isButtonDisabled = false;
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: globalColorLight, backgroundColor: globalColorDark,
+                  ),
+                  child: const Text("Login"),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

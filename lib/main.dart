@@ -5,6 +5,7 @@ import 'package:b_dental/pages/details/payment_details.dart';
 import 'package:b_dental/pages/details/visit_details.dart';
 import 'package:b_dental/pages/home.dart';
 import 'package:b_dental/pages/login.dart';
+import 'package:b_dental/signup.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(
@@ -13,6 +14,7 @@ void main() => runApp(
     initialRoute: "/",
     routes: {
       "/": (context) => Login(),
+      "/register": (context) => SignUp(),
       "/home": (context) => Home(),
       "/patientDetails": (context) => PatientDetails(),
       "/visitDetails": (context) => VisitDetails(),
