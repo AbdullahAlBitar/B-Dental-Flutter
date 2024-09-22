@@ -48,7 +48,6 @@ class _PaymentState extends State<Payment> {
       if (response.statusCode == 200) {
         final res = jsonDecode(response.body);
         setState(() {
-          print(res);
           payments = res;
         });
       } else {
