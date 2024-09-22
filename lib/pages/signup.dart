@@ -14,7 +14,7 @@ Future<Map<String, dynamic>> signUp(String name, String phone, String password, 
       final response = await http.post(
         Uri.parse('$url/auth/signup'),
         headers: <String, String>{'Content-Type': 'application/json'},
-        body: jsonEncode(<String, String>{'name': name, 'phone': phone, 'password': password}),
+        body: jsonEncode(<String, String>{'name': name, 'phone': phone, 'password': password, "cPassword": passwordConfirmation}),
       ).timeout(const Duration(seconds: 5), onTimeout: () {
         throw TimeoutException('Request timed out');
       });
@@ -158,7 +158,11 @@ class _SignUpState extends State<SignUp> {
                         _controllerPhone.clear();
                         _controllerPassword.clear();
                         _controllerPasswordConfirmation.clear();
-                        Navigator.pushNamed(context, "/home");
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(result['message'])),
+                        );
+                        Navigator.pop(context);
+                        //Navigator.pushNamed(context, "/home");
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text(result['message'])),
