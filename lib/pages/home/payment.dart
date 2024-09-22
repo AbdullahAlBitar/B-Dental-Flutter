@@ -2,6 +2,8 @@ import 'package:b_dental/cards/payment_card.dart';
 import 'package:b_dental/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Payment extends StatefulWidget {
   const Payment({super.key});
@@ -18,18 +20,57 @@ class _PaymentState extends State<Payment> {
     });
   }
 
-  final List<PaymentCard> payments = [
-    PaymentCard(1, "p1", "d1", 500000, DateTime.now()),
-    PaymentCard(1, "abdah", "yousof", 500000, DateTime.now()),
-    PaymentCard(1, "p1", "d1", 500000, DateTime.now()),
-    PaymentCard(1, "p1", "d1", 500000, DateTime.now()),
-    PaymentCard(1, "p1", "d1", 500000, DateTime.now()),
-  ];
+  String jwt = "";
+  List payments = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getInfo();
+  }
+
+  Future<void> getInfo() async {
+    SharedPreferences logindata = await SharedPreferences.getInstance();
+    jwt = logindata.getString('jwt') ?? '';
+    if (jwt.isEmpty) {
+      Navigator.pushNamed(context, "/");
+    }
+
+    try {
+      final response = await http.get(
+        Uri.parse('$url/payments/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $jwt',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final res = jsonDecode(response.body);
+        setState(() {
+          print(res);
+          payments = res;
+        });
+      } else {
+        final res = jsonDecode(response.body);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(res['error'])),
+        );
+
+        logindata.setBool('login', true);
+        Navigator.pushNamed(context, "/");
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Network error. Please try again later.')),
+      );
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         floatingActionButton: Container(
           padding: const EdgeInsets.all(5),
           decoration:
@@ -54,12 +95,16 @@ class _PaymentState extends State<Payment> {
                 const SizedBox(
                   height: 10,
                 ),
-                Text(
-                  'Payments: ',
-                  style: TextStyle(
-                      color: globalColorLight,
-                      fontSize: 24,
-                      decoration: TextDecoration.none),
+                Row(
+                  children: [
+                    Text(
+                      'Payments: ',
+                      style: TextStyle(
+                          color: globalColorLight,
+                          fontSize: 24,
+                          decoration: TextDecoration.none),
+                    ),
+                  ],
                 ),
                 const SizedBox(
                   height: 10,
@@ -73,7 +118,7 @@ class _PaymentState extends State<Payment> {
                   height: MediaQuery.of(context).size.height - 50 - 120,
                   child: SingleChildScrollView(
                     child: Column(
-                      children: payments,
+                      children: payments.map((p) => PaymentCard(p['id'], p['patient']['name'], p['Doctor']['name'], double.parse(p['amount'].toString()), DateTime.parse(p['date']))).toList(),
                     ),
                   ),
                 ),
@@ -84,7 +129,6 @@ class _PaymentState extends State<Payment> {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }
