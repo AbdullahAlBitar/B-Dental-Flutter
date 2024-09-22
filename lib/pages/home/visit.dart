@@ -69,6 +69,7 @@ class _VisitState extends State<Visit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: globalDarkBG,
       floatingActionButton: Container(
         padding: const EdgeInsets.all(5),
         decoration:
@@ -84,8 +85,6 @@ class _VisitState extends State<Visit> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height - 50,
-          color: globalDarkBG,
           padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

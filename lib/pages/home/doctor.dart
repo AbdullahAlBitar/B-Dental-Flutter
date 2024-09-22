@@ -86,7 +86,6 @@ class _DoctorState extends State<Doctor> {
       backgroundColor: globalDarkBG,
         body: SingleChildScrollView(
       child: Container(
-        color: globalDarkBG,
         padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

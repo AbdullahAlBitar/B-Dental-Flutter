@@ -78,6 +78,7 @@ class _PatientState extends State<Patient> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: globalDarkBG,
       floatingActionButton: Container(
         padding: const EdgeInsets.all(5),
         decoration:
@@ -93,8 +94,6 @@ class _PatientState extends State<Patient> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height - 50,
-          color: globalDarkBG,
           padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,7 +144,7 @@ class _PatientState extends State<Patient> {
                   color: globalBG,
                 ),
                 padding: const EdgeInsets.all(10),
-                height: MediaQuery.of(context).size.height - 50 - 175,
+                height: MediaQuery.of(context).size.height - 50 - 170,
                 child: SingleChildScrollView(
                   child: Column(
                     children: filteredPatients
