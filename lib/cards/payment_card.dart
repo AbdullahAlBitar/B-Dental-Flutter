@@ -19,7 +19,9 @@ class PaymentCard extends StatelessWidget {
         children: <Widget>[
           const SizedBox(width: 5),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                    Navigator.pushNamed(context, "/paymentDetails", arguments: id);
+              },
               icon: Icon(
                 Icons.info_outline,
                 color: globalColorLight,
