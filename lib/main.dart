@@ -6,13 +6,15 @@ import 'package:b_dental/pages/home.dart';
 import 'package:b_dental/pages/login.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: "/",
-      routes: {
-        "/": (context) => Login(),
-        "/home": (context) => Home(),
-        "/patientDetails": (context) => PatientDetails(),
-        "/visitDetails": (context) => VisitDetails(),
-      },
-    ));
+void main() => runApp(
+  MaterialApp(
+    debugShowCheckedModeBanner: false,
+    initialRoute: "/",
+    routes: {
+      "/": (context) => Login(),
+      "/home": (context) => Home(),
+      "/patientDetails": (context) => PatientDetails(),
+      "/visitDetails": (context) => VisitDetails(),
+    },
+  )
+);
