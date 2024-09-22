@@ -13,15 +13,10 @@ class Patient extends StatefulWidget {
 }
 
 class _PatientState extends State<Patient> {
-  void logOut() async {
-    (await SharedPreferences.getInstance()).remove("login");
-    setState(() {
-      Navigator.pop(context);
-    });
-  }
-
+  TextEditingController searchController = TextEditingController();
   String jwt = "";
   List patients = [];
+  List filteredPatients = [];
 
   @override
   void initState() {
@@ -49,6 +44,7 @@ class _PatientState extends State<Patient> {
         final res = jsonDecode(response.body);
         setState(() {
           patients = res;
+          filteredPatients = patients; // Initialize filtered list
         });
       } else {
         final res = jsonDecode(response.body);
@@ -58,13 +54,25 @@ class _PatientState extends State<Patient> {
 
         logindata.setBool('login', true);
         Navigator.pushNamed(context, "/");
-
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Network error. Please try again later.')),
       );
     }
+  }
+
+  void filterPatients(String query) {
+    List filtered = patients.where((p) {
+      final nameLower = p['name'].toLowerCase();
+      final phoneLower = p['phone'].toLowerCase();
+      final searchLower = query.toLowerCase();
+      return nameLower.contains(searchLower) || phoneLower.contains(searchLower);
+    }).toList();
+
+    setState(() {
+      filteredPatients = filtered;
+    });
   }
 
   @override
@@ -91,9 +99,7 @@ class _PatientState extends State<Patient> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               Row(
                 children: [
                   Text(
@@ -105,19 +111,44 @@ class _PatientState extends State<Patient> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 10,
+              const SizedBox(height: 10),
+              // Search bar
+              TextField(
+                cursorColor: Colors.white,
+                controller: searchController,
+                style: TextStyle(
+                  color: globalColorLight
+                ),
+                onChanged: (value) {
+                  filterPatients(value);
+                },
+                decoration: InputDecoration(
+                  labelText: 'Search by name or phone',
+                  labelStyle: TextStyle(
+                    color: globalColorLight
+                  ),
+                  prefixIcon: Icon(Icons.search, color: globalColorLight),
+                  filled: true,
+                  fillColor: globalBG,
+                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(
+                    color: globalColorLight
+                  )),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
               ),
+              const SizedBox(height: 10),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   color: globalBG,
                 ),
                 padding: const EdgeInsets.all(10),
-                height: MediaQuery.of(context).size.height - 50 - 120,
+                height: MediaQuery.of(context).size.height - 50 - 175,
                 child: SingleChildScrollView(
                   child: Column(
-                    children: patients
+                    children: filteredPatients
                           .map((p) => PatientCard(
                             p['id'], p['name'], p['phone'], p['sex'] == "Male" ? 1 : 0
                           ))
@@ -125,13 +156,12 @@ class _PatientState extends State<Patient> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
             ],
           ),
         ),
       ),
     );
   }
+
 }
