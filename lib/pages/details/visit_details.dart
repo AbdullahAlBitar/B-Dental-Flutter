@@ -139,8 +139,8 @@ class _VisitDetailsState extends State<VisitDetails> {
                 Text(
                   description,
                   softWrap: true,
-                  style: const TextStyle(
-                      color: Colors.white,
+                  style: TextStyle(
+                      color: globalTextColor,
                       fontSize: 20,
                       decoration: TextDecoration.none),
                 ),
@@ -158,7 +158,7 @@ class _VisitDetailsState extends State<VisitDetails> {
                     ),
                   ],
                 ),
-                const Divider(color: Colors.white),
+                Divider(color: globalTextColor),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -173,8 +173,8 @@ class _VisitDetailsState extends State<VisitDetails> {
                         ),
                         Text(
                           doctorName,
-                          style: const TextStyle(
-                              color: Colors.white,
+                          style: TextStyle(
+                              color: globalTextColor,
                               fontSize: 20,
                               decoration: TextDecoration.none),
                         ),
@@ -192,15 +192,15 @@ class _VisitDetailsState extends State<VisitDetails> {
                         ),
                         Text(
                           charge,
-                          style: const TextStyle(
-                              color: Colors.white,
+                          style: TextStyle(
+                              color: globalTextColor,
                               fontSize: 20,
                               decoration: TextDecoration.none),
                         ),
-                        const Text(
+                        Text(
                           ' SYP',
                           style: TextStyle(
-                              color: Colors.white,
+                              color: globalTextColor,
                               fontSize: 20,
                               decoration: TextDecoration.none),
                         ),

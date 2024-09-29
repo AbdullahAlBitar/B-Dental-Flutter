@@ -42,9 +42,9 @@ class PaymentCard extends StatelessWidget {
                       color: globalColorLight,
                     ),
                   ),
-                  const Icon(
+                  Icon(
                     Icons.double_arrow_outlined,
-                    color: Colors.white,
+                    color: globalTextColor,
                     size: 15,
                   ),
                   Text(
@@ -58,9 +58,9 @@ class PaymentCard extends StatelessWidget {
               ),
               Text(
                 "${amount.toString().substring(0, amount.toString().indexOf("."))} SYP",
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 15,
-                  color: Colors.white,
+                  color: globalTextColor,
                 ),
               ),
               const SizedBox(height: 10)
@@ -74,7 +74,7 @@ class PaymentCard extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: Text(
                   date.toString().substring(0, 10),
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(color: globalTextColor),
                 )),
           ),
           const SizedBox(

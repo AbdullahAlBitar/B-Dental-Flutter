@@ -110,8 +110,8 @@ class _DoctorState extends State<Doctor> {
                         ),
                         Text(
                           name,
-                          style: const TextStyle(
-                              color: Colors.white,
+                          style: TextStyle(
+                              color: globalTextColor,
                               fontSize: 28,
                               decoration: TextDecoration.none),
                         ),
@@ -138,8 +138,8 @@ class _DoctorState extends State<Doctor> {
                     ))
               ],
             ),
-            const Divider(
-              color: Colors.white,
+            Divider(
+              color: globalTextColor,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,15 +155,15 @@ class _DoctorState extends State<Doctor> {
                     ),
                     Text(
                       dues,
-                      style: const TextStyle(
-                          color: Colors.white,
+                      style: TextStyle(
+                          color: globalTextColor,
                           fontSize: 20,
                           decoration: TextDecoration.none),
                     ),
-                    const Text(
+                    Text(
                       ' SYP',
                       style: TextStyle(
-                          color: Colors.white,
+                          color: globalTextColor,
                           fontSize: 20,
                           decoration: TextDecoration.none),
                     ),

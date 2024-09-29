@@ -113,7 +113,7 @@ class _PatientState extends State<Patient> {
               const SizedBox(height: 10),
               // Search bar
               TextField(
-                cursorColor: Colors.white,
+                cursorColor: globalTextColor,
                 controller: searchController,
                 style: TextStyle(
                   color: globalColorLight

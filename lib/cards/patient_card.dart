@@ -43,9 +43,9 @@ class PatientCard extends StatelessWidget {
               ),
               Text(
                 phone,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 15,
-                  color: Colors.white,
+                  color: globalTextColor,
                 ),
               ),
               const SizedBox(height: 10)

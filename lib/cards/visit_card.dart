@@ -42,9 +42,9 @@ class VisitCard extends StatelessWidget {
               ),
               Text(
                 "${charge.toString().substring(0, charge.toString().indexOf("."))} SYP",
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 15,
-                  color: Colors.white,
+                  color: globalTextColor,
                 ),
               ),
               const SizedBox(height: 10)
@@ -58,7 +58,7 @@ class VisitCard extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: Text(
                   date.toString().substring(0, 10),
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(color: globalTextColor),
                 )),
           ),
           const SizedBox(
