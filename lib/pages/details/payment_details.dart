@@ -1,3 +1,4 @@
+import 'package:b_dental/cards/nav_bar.dart';
 import 'package:b_dental/cards/patient_card.dart';
 import 'package:b_dental/globals.dart';
 import 'package:flutter/material.dart';
@@ -185,49 +186,7 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                   const SizedBox(height: 20),
                 ],
               ),
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(color: getAccentColor(context), width: 5),
-                    borderRadius: BorderRadius.circular(8),
-                    color: getBackgroundColor(context)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_outlined,
-                        color: colorLight,
-                        size: 36,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        Navigator.popUntil(
-                            context, ModalRoute.withName('/home'));
-                      },
-                      icon: Icon(
-                        Icons.home,
-                        color: colorLight,
-                        size: 36,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        Navigator.popUntil(
-                            context, ModalRoute.withName('/home'));
-                      },
-                      icon: const Icon(
-                        Icons.delete_outline,
-                        color: Colors.red,
-                        size: 36,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              NavBar('payment', id),
             ],
           ),
         ),
