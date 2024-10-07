@@ -69,18 +69,18 @@ class _VisitState extends State<Visit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: globalDarkBG,
+      backgroundColor: getDarkBackgroundColor(context),
       floatingActionButton: Container(
         padding: const EdgeInsets.all(5),
         decoration:
-            BoxDecoration(shape: BoxShape.circle, color: globalColorDark),
+            BoxDecoration(shape: BoxShape.circle, color: getPrimaryColor(context)),
         child: IconButton(
           onPressed: () {},
           icon: const Icon(
             Icons.add_circle_outline_sharp,
             size: 30,
           ),
-          color: globalColorLight,
+          color: getAccentColor(context),
         ),
       ),
       body: SingleChildScrollView(
@@ -97,7 +97,7 @@ class _VisitState extends State<Visit> {
                   Text(
                     'Visits: ',
                     style: TextStyle(
-                        color: globalColorLight,
+                        color: getAccentColor(context),
                         fontSize: 24,
                         decoration: TextDecoration.none),
                   ),
@@ -109,7 +109,7 @@ class _VisitState extends State<Visit> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
-                  color: globalBG,
+                  color: getBackgroundColor(context),
                 ),
                 padding: const EdgeInsets.all(10),
                 height: MediaQuery.of(context).size.height - 50 - 120,

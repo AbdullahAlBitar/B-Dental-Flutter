@@ -78,18 +78,18 @@ class _PatientState extends State<Patient> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: globalDarkBG,
+      backgroundColor: getDarkBackgroundColor(context),
       floatingActionButton: Container(
         padding: const EdgeInsets.all(5),
         decoration:
-            BoxDecoration(shape: BoxShape.circle, color: globalColorDark),
+            BoxDecoration(shape: BoxShape.circle, color: getPrimaryColor(context)),
         child: IconButton(
           onPressed: () {},
           icon: const Icon(
             Icons.person_add_alt_outlined,
             size: 30,
           ),
-          color: globalColorLight,
+          color: getAccentColor(context),
         ),
       ),
       body: SingleChildScrollView(
@@ -104,7 +104,7 @@ class _PatientState extends State<Patient> {
                   Text(
                     'Patients: ',
                     style: TextStyle(
-                        color: globalColorLight,
+                        color: getAccentColor(context),
                         fontSize: 24,
                         decoration: TextDecoration.none),
                   ),
@@ -113,10 +113,10 @@ class _PatientState extends State<Patient> {
               const SizedBox(height: 10),
               // Search bar
               TextField(
-                cursorColor: globalTextColor,
+                cursorColor: getTextColor(context),
                 controller: searchController,
                 style: TextStyle(
-                  color: globalColorLight
+                  color: getAccentColor(context)
                 ),
                 onChanged: (value) {
                   filterPatients(value);
@@ -124,13 +124,13 @@ class _PatientState extends State<Patient> {
                 decoration: InputDecoration(
                   labelText: 'Search by name or phone',
                   labelStyle: TextStyle(
-                    color: globalColorLight
+                    color: getAccentColor(context)
                   ),
-                  prefixIcon: Icon(Icons.search, color: globalColorLight),
+                  prefixIcon: Icon(Icons.search, color: getAccentColor(context)),
                   filled: true,
-                  fillColor: globalBG,
+                  fillColor: getBackgroundColor(context),
                   focusedBorder: OutlineInputBorder(borderSide: BorderSide(
-                    color: globalColorLight
+                    color: getAccentColor(context)
                   )),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
@@ -141,7 +141,7 @@ class _PatientState extends State<Patient> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
-                  color: globalBG,
+                  color: getBackgroundColor(context),
                 ),
                 padding: const EdgeInsets.all(10),
                 height: MediaQuery.of(context).size.height - 50 - 170,

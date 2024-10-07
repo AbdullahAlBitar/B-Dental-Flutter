@@ -68,7 +68,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: globalDarkBG,
+      backgroundColor: getDarkBackgroundColor(context),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
         child: Column(
@@ -76,20 +76,20 @@ class _LoginState extends State<Login> {
           children: [
             Text(
               "B-Dental",
-              style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold, color: globalColorLight),
+              style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold, color: getAccentColor(context)),
             ),
             const SizedBox(height: 40),
             TextField(
               controller: _controllerUsername,
-              cursorColor: globalColorLight,
-              style: TextStyle(color: globalColorLight),
+              cursorColor: getAccentColor(context),
+              style: TextStyle(color: getAccentColor(context)),
               decoration: InputDecoration(
                 filled: true,
-                fillColor: globalBG,
+                fillColor: getBackgroundColor(context),
                 hintText: "Username",
-                hintStyle: TextStyle(color: globalColorLight),
+                hintStyle: TextStyle(color: getAccentColor(context)),
                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(
-                    color: globalColorLight
+                    color: getAccentColor(context)
                   )),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -100,15 +100,15 @@ class _LoginState extends State<Login> {
             TextField(
               controller: _controllerPassword,
               obscureText: true,
-              cursorColor: globalColorLight,
-              style: TextStyle(color: globalColorLight),
+              cursorColor: getAccentColor(context),
+              style: TextStyle(color: getAccentColor(context)),
               decoration: InputDecoration(
                 filled: true,
-                fillColor: globalBG,
+                fillColor: getBackgroundColor(context),
                 hintText: "Password",
-                hintStyle: TextStyle(color: globalColorLight),
+                hintStyle: TextStyle(color: getAccentColor(context)),
                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(
-                    color: globalColorLight
+                    color: getAccentColor(context)
                   )),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -123,7 +123,7 @@ class _LoginState extends State<Login> {
                   onPressed: () {
                     Navigator.pushNamed(context, "/register");
                   }, // Handle signup
-                  child: Text("Sign Up?", style: TextStyle(color: globalColorLight)),
+                  child: Text("Sign Up?", style: TextStyle(color: getAccentColor(context))),
                 ),
                 ElevatedButton(
                   onPressed: _isButtonDisabled ? null : () async {
@@ -149,7 +149,7 @@ class _LoginState extends State<Login> {
                     });
                   },
                   style: ElevatedButton.styleFrom(
-                    foregroundColor: globalColorLight, backgroundColor: globalColorDark,
+                    foregroundColor: getAccentColor(context), backgroundColor: getPrimaryColor(context),
                   ),
                   child: const Text("Login"),
                 ),

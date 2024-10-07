@@ -16,19 +16,36 @@ Color lightBG = const Color(0xFFF5F5F5);  // Light Gray
 Color lightDarkBG = const Color(0xFFE0E0E0);  // Medium Gray
 Color lightTextColor = const Color(0xFF212121);  // Black text for light mode
 
-// Current theme (can be toggled between dark and light)
-bool isDarkMode = true;
-
 // Getter functions for current theme colors
-Color get globalColorDark => isDarkMode ? darkColorPrimary : lightColorPrimary;
-Color get globalColorLight => isDarkMode ? darkColorAccent : lightColorAccent;
-Color get globalBG => isDarkMode ? darkBG : lightBG;
-Color get globalDarkBG => isDarkMode ? darkDarkBG : lightDarkBG;
-Color get globalTextColor => isDarkMode ? darkTextColor : lightTextColor;
+Color getPrimaryColor(BuildContext context) {
+  var brightness = MediaQuery.of(context).platformBrightness;
+  return brightness == Brightness.dark ? darkColorPrimary : lightColorPrimary;
+}
+
+Color getAccentColor(BuildContext context) {
+  var brightness = MediaQuery.of(context).platformBrightness;
+  return brightness == Brightness.dark ? darkColorAccent : lightColorAccent;
+}
+
+Color getBackgroundColor(BuildContext context) {
+  var brightness = MediaQuery.of(context).platformBrightness;
+  return brightness == Brightness.dark ? darkBG : lightBG;
+}
+
+Color getDarkBackgroundColor(BuildContext context) {
+  var brightness = MediaQuery.of(context).platformBrightness;
+  return brightness == Brightness.dark ? darkDarkBG : lightDarkBG;
+}
+
+Color getTextColor(BuildContext context) {
+  var brightness = MediaQuery.of(context).platformBrightness;
+  return brightness == Brightness.dark ? darkTextColor : lightTextColor;
+}
 
 
-// Color globalColorDark =const Color.fromARGB(255, 0, 69, 75);
-// Color globalColorLight =Colors.cyanAccent;
 
-// Color globalBG = const Color.fromARGB(255, 59, 59, 59);
-// Color globalDarkBG = const Color.fromARGB(255, 32, 32, 32);
+// Color getPrimaryColor =const Color.fromARGB(255, 0, 69, 75);
+// Color getAccentColor =Colors.cyanAccent;
+
+// Color getBackgroundColor = const Color.fromARGB(255, 59, 59, 59);
+// Color getDarkBackgroundColor = const Color.fromARGB(255, 32, 32, 32);

@@ -13,7 +13,7 @@ class VisitCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: globalColorDark,
+      color: getPrimaryColor(context),
       margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
       child: Row(
         children: <Widget>[
@@ -24,7 +24,7 @@ class VisitCard extends StatelessWidget {
               },
               icon: Icon(
                 Icons.info_outline,
-                color: globalColorLight,
+                color: getAccentColor(context),
                 size: 26,
               )),
           const SizedBox(width: 5),
@@ -37,14 +37,14 @@ class VisitCard extends StatelessWidget {
                 name,
                 style: TextStyle(
                   fontSize: 18,
-                  color: globalColorLight,
+                  color: getAccentColor(context),
                 ),
               ),
               Text(
                 "${charge.toString().substring(0, charge.toString().indexOf("."))} SYP",
                 style: TextStyle(
                   fontSize: 15,
-                  color: globalTextColor,
+                  color: getTextColor(context),
                 ),
               ),
               const SizedBox(height: 10)
@@ -58,7 +58,7 @@ class VisitCard extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: Text(
                   date.toString().substring(0, 10),
-                  style: TextStyle(color: globalTextColor),
+                  style: TextStyle(color: getTextColor(context)),
                 )),
           ),
           const SizedBox(

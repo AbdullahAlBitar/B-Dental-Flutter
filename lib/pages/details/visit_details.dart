@@ -98,15 +98,16 @@ class _VisitDetailsState extends State<VisitDetails> {
     }
   }
 
-  Color colorLight = globalColorLight;
 
   @override
   Widget build(BuildContext context) {
+    Color colorLight = getAccentColor(context);
+    
     return Scaffold(
-      backgroundColor: globalDarkBG,
+      backgroundColor: getDarkBackgroundColor(context),
       body: SingleChildScrollView(
           child: Container(
-            color: globalDarkBG,
+            color: getDarkBackgroundColor(context),
             padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -140,7 +141,7 @@ class _VisitDetailsState extends State<VisitDetails> {
                   description,
                   softWrap: true,
                   style: TextStyle(
-                      color: globalTextColor,
+                      color: getTextColor(context),
                       fontSize: 20,
                       decoration: TextDecoration.none),
                 ),
@@ -152,13 +153,13 @@ class _VisitDetailsState extends State<VisitDetails> {
                       date.substring(0, 10),
                       softWrap: true,
                       style: TextStyle(
-                          color: globalColorLight,
+                          color: getAccentColor(context),
                           fontSize: 14,
                           decoration: TextDecoration.none),
                     ),
                   ],
                 ),
-                Divider(color: globalTextColor),
+                Divider(color: getTextColor(context)),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -174,7 +175,7 @@ class _VisitDetailsState extends State<VisitDetails> {
                         Text(
                           doctorName,
                           style: TextStyle(
-                              color: globalTextColor,
+                              color: getTextColor(context),
                               fontSize: 20,
                               decoration: TextDecoration.none),
                         ),
@@ -193,14 +194,14 @@ class _VisitDetailsState extends State<VisitDetails> {
                         Text(
                           charge,
                           style: TextStyle(
-                              color: globalTextColor,
+                              color: getTextColor(context),
                               fontSize: 20,
                               decoration: TextDecoration.none),
                         ),
                         Text(
                           ' SYP',
                           style: TextStyle(
-                              color: globalTextColor,
+                              color: getTextColor(context),
                               fontSize: 20,
                               decoration: TextDecoration.none),
                         ),
@@ -213,9 +214,9 @@ class _VisitDetailsState extends State<VisitDetails> {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: globalColorLight, width: 5),
+                    border: Border.all(color: getAccentColor(context), width: 5),
                     borderRadius: BorderRadius.circular(8),
-                    color: globalBG
+                    color: getBackgroundColor(context)
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

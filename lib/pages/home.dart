@@ -15,9 +15,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  Color colorLight = globalColorLight;
-
-  TextStyle labelStyle = TextStyle(color: globalTextColor);
 
   int currentIndex = 0;
   final List<Widget> screens = [Doctor(), Patient(), Visit(), Payment()];
@@ -50,9 +47,9 @@ class _HomeState extends State<Home> {
           });
         },
         items: desNav,
-        backgroundColor: globalColorDark,
+        backgroundColor: getPrimaryColor(context),
         unselectedItemColor: Colors.cyanAccent[900],
-        selectedItemColor: globalColorLight,
+        selectedItemColor: getAccentColor(context),
         elevation: 5,
       ),
     );

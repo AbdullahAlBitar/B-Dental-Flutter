@@ -70,18 +70,18 @@ class _PaymentState extends State<Payment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: globalDarkBG,
+        backgroundColor: getDarkBackgroundColor(context),
         floatingActionButton: Container(
           padding: const EdgeInsets.all(5),
           decoration:
-              BoxDecoration(shape: BoxShape.circle, color: globalColorDark),
+              BoxDecoration(shape: BoxShape.circle, color: getPrimaryColor(context)),
           child: IconButton(
             onPressed: () {},
             icon: const Icon(
               Icons.attach_money,
               size: 30,
             ),
-            color: globalColorLight,
+            color: getAccentColor(context),
           ),
         ),
         body: SingleChildScrollView(
@@ -98,7 +98,7 @@ class _PaymentState extends State<Payment> {
                     Text(
                       'Payments: ',
                       style: TextStyle(
-                          color: globalColorLight,
+                          color: getAccentColor(context),
                           fontSize: 24,
                           decoration: TextDecoration.none),
                     ),
@@ -110,7 +110,7 @@ class _PaymentState extends State<Payment> {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
-                    color: globalBG,
+                    color: getBackgroundColor(context),
                   ),
                   padding: const EdgeInsets.all(10),
                   height: MediaQuery.of(context).size.height - 50 - 120,

@@ -13,7 +13,7 @@ class PaymentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: globalColorDark,
+      color: getPrimaryColor(context),
       margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
       child: Row(
         children: <Widget>[
@@ -24,7 +24,7 @@ class PaymentCard extends StatelessWidget {
               },
               icon: Icon(
                 Icons.info_outline,
-                color: globalColorLight,
+                color: getAccentColor(context),
                 size: 26,
               )),
           const SizedBox(width: 5),
@@ -39,19 +39,19 @@ class PaymentCard extends StatelessWidget {
                     patientName,
                     style: TextStyle(
                       fontSize: 14,
-                      color: globalColorLight,
+                      color: getAccentColor(context),
                     ),
                   ),
                   Icon(
                     Icons.double_arrow_outlined,
-                    color: globalTextColor,
+                    color: getTextColor(context),
                     size: 15,
                   ),
                   Text(
                     doctorName,
                     style: TextStyle(
                       fontSize: 14,
-                      color: globalColorLight,
+                      color: getAccentColor(context),
                     ),
                   ),
                 ],
@@ -60,7 +60,7 @@ class PaymentCard extends StatelessWidget {
                 "${amount.toString().substring(0, amount.toString().indexOf("."))} SYP",
                 style: TextStyle(
                   fontSize: 15,
-                  color: globalTextColor,
+                  color: getTextColor(context),
                 ),
               ),
               const SizedBox(height: 10)
@@ -74,7 +74,7 @@ class PaymentCard extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: Text(
                   date.toString().substring(0, 10),
-                  style: TextStyle(color: globalTextColor),
+                  style: TextStyle(color: getTextColor(context)),
                 )),
           ),
           const SizedBox(

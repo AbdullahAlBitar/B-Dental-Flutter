@@ -20,5 +20,6 @@ void main() => runApp(
       "/visitDetails": (context) => VisitDetails(),
       "/paymentDetails": (context) => PaymentDetails(),
     },
+    themeMode: ThemeMode.system,
   )
 );

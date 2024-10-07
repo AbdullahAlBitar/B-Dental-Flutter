@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+
 class PatientDetails extends StatefulWidget {
   const PatientDetails({super.key});
 
@@ -93,15 +94,19 @@ class _PatientDetailsState extends State<PatientDetails> {
     }
   }
 
-  Color colorLight = globalColorLight;
-
   @override
   Widget build(BuildContext context) {
+    // Use the dynamic color getters based on context
+    Color accentColor = getAccentColor(context);
+    Color backgroundColor = getBackgroundColor(context);
+    Color darkBackgroundColor = getDarkBackgroundColor(context);
+    Color textColor = getTextColor(context);
+
     return Scaffold(
-      backgroundColor: globalDarkBG,
+      backgroundColor: darkBackgroundColor,  // Dynamically set background color
       body: SingleChildScrollView(
         child: Container(
-          color: globalDarkBG,
+          color: darkBackgroundColor,  // Dynamically set background color
           padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -124,7 +129,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                           Text(
                             name,
                             style: TextStyle(
-                                color: globalTextColor,
+                                color: textColor,  // Dynamically set text color
                                 fontSize: 24,
                                 decoration: TextDecoration.none),
                           ),
@@ -134,7 +139,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                       Text(
                         phone,
                         style: TextStyle(
-                            color: colorLight,
+                            color: accentColor,  // Dynamically set accent color
                             fontSize: 20,
                             decoration: TextDecoration.none),
                       ),
@@ -144,13 +149,13 @@ class _PatientDetailsState extends State<PatientDetails> {
                     onPressed: () {},
                     icon: Icon(
                       Icons.edit_note_rounded,
-                      color: colorLight,
+                      color: accentColor,  // Dynamically set accent color
                       size: 36,
                     ),
                   )
                 ],
               ),
-              Divider(color: globalTextColor),
+              Divider(color: textColor),  // Dynamically set divider color
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -159,21 +164,21 @@ class _PatientDetailsState extends State<PatientDetails> {
                       Text(
                         'Dues: ',
                         style: TextStyle(
-                            color: colorLight,
+                            color: accentColor,  // Dynamically set accent color
                             fontSize: 20,
                             decoration: TextDecoration.none),
                       ),
                       Text(
                         dues,
                         style: TextStyle(
-                            color: globalTextColor,
+                            color: textColor,  // Dynamically set text color
                             fontSize: 20,
                             decoration: TextDecoration.none),
                       ),
                       Text(
                         ' SYP',
                         style: TextStyle(
-                            color: globalTextColor,
+                            color: textColor,  // Dynamically set text color
                             fontSize: 20,
                             decoration: TextDecoration.none),
                       ),
@@ -183,7 +188,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                   Text(
                     'Visits: ',
                     style: TextStyle(
-                        color: colorLight,
+                        color: accentColor,  // Dynamically set accent color
                         fontSize: 20,
                         decoration: TextDecoration.none),
                   ),
@@ -191,7 +196,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: globalBG,
+                      color: backgroundColor,  // Dynamically set background color
                     ),
                     padding: const EdgeInsets.all(10),
                     height: 200,
@@ -210,7 +215,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                   Text(
                     'Payments: ',
                     style: TextStyle(
-                        color: colorLight,
+                        color: accentColor,  // Dynamically set accent color
                         fontSize: 20,
                         decoration: TextDecoration.none),
                   ),
@@ -218,7 +223,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: globalBG,
+                      color: backgroundColor,  // Dynamically set background color
                     ),
                     padding: const EdgeInsets.all(10),
                     height: 200,
@@ -237,14 +242,12 @@ class _PatientDetailsState extends State<PatientDetails> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               Container(
                 decoration: BoxDecoration(
-                    border: Border.all(color: globalColorLight, width: 5),
+                    border: Border.all(color: accentColor, width: 5),
                     borderRadius: BorderRadius.circular(8),
-                    color: globalBG),
+                    color: backgroundColor),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -254,7 +257,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                       },
                       icon: Icon(
                         Icons.arrow_back_outlined,
-                        color: colorLight,
+                        color: accentColor,
                         size: 36,
                       ),
                     ),
@@ -265,7 +268,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                       },
                       icon: Icon(
                         Icons.home,
-                        color: colorLight,
+                        color: accentColor,
                         size: 36,
                       ),
                     ),

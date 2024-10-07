@@ -93,15 +93,16 @@ class _PatientDetailsState extends State<PatientDetails> {
     }
   }
 
-  Color colorLight = globalColorLight;
 
   @override
   Widget build(BuildContext context) {
+    Color colorLight = getAccentColor(context);
+    
     return Scaffold(
-      backgroundColor: globalDarkBG,
+      backgroundColor: getDarkBackgroundColor(context),
       body: SingleChildScrollView(
         child: Container(
-          color: globalDarkBG,
+          color: getDarkBackgroundColor(context),
           padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -124,7 +125,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                           Text(
                             name,
                             style: TextStyle(
-                                color: globalTextColor,
+                                color: getTextColor(context),
                                 fontSize: 24,
                                 decoration: TextDecoration.none),
                           ),
@@ -150,7 +151,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                   )
                 ],
               ),
-              Divider(color: globalTextColor),
+              Divider(color: getTextColor(context)),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -166,14 +167,14 @@ class _PatientDetailsState extends State<PatientDetails> {
                       Text(
                         dues,
                         style: TextStyle(
-                            color: globalTextColor,
+                            color: getTextColor(context),
                             fontSize: 20,
                             decoration: TextDecoration.none),
                       ),
                       Text(
                         ' SYP',
                         style: TextStyle(
-                            color: globalTextColor,
+                            color: getTextColor(context),
                             fontSize: 20,
                             decoration: TextDecoration.none),
                       ),
@@ -191,7 +192,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: globalBG,
+                      color: getBackgroundColor(context),
                     ),
                     padding: const EdgeInsets.all(10),
                     height: 200,
@@ -218,7 +219,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: globalBG,
+                      color: getBackgroundColor(context),
                     ),
                     padding: const EdgeInsets.all(10),
                     height: 200,
@@ -242,9 +243,9 @@ class _PatientDetailsState extends State<PatientDetails> {
               ),
               Container(
                 decoration: BoxDecoration(
-                    border: Border.all(color: globalColorLight, width: 5),
+                    border: Border.all(color: getAccentColor(context), width: 5),
                     borderRadius: BorderRadius.circular(8),
-                    color: globalBG),
+                    color: getBackgroundColor(context)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

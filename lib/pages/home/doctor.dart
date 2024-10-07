@@ -78,12 +78,13 @@ class _DoctorState extends State<Doctor> {
     }
   }
 
-  Color colorLight = globalColorLight;
 
   @override
   Widget build(BuildContext context) {
+    Color colorLight = getAccentColor(context);
+    
     return Scaffold(
-      backgroundColor: globalDarkBG,
+      backgroundColor: getDarkBackgroundColor(context),
         body: SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
@@ -111,7 +112,7 @@ class _DoctorState extends State<Doctor> {
                         Text(
                           name,
                           style: TextStyle(
-                              color: globalTextColor,
+                              color: getTextColor(context),
                               fontSize: 28,
                               decoration: TextDecoration.none),
                         ),
@@ -139,7 +140,7 @@ class _DoctorState extends State<Doctor> {
               ],
             ),
             Divider(
-              color: globalTextColor,
+              color: getTextColor(context),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,14 +157,14 @@ class _DoctorState extends State<Doctor> {
                     Text(
                       dues,
                       style: TextStyle(
-                          color: globalTextColor,
+                          color: getTextColor(context),
                           fontSize: 20,
                           decoration: TextDecoration.none),
                     ),
                     Text(
                       ' SYP',
                       style: TextStyle(
-                          color: globalTextColor,
+                          color: getTextColor(context),
                           fontSize: 20,
                           decoration: TextDecoration.none),
                     ),
@@ -185,7 +186,7 @@ class _DoctorState extends State<Doctor> {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
-                    color: globalBG,
+                    color: getBackgroundColor(context),
                   ),
                   padding: const EdgeInsets.all(10),
                   height: 200,

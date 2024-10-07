@@ -12,7 +12,7 @@ class PatientCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: globalColorDark,
+      color: getPrimaryColor(context),
       margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
       child: Row(
         children: <Widget>[
@@ -23,7 +23,7 @@ class PatientCard extends StatelessWidget {
               },
               icon: Icon(
                 Icons.info_outline,
-                color: globalColorLight,
+                color: getAccentColor(context),
                 size: 26,
               )),
           const SizedBox(width: 7),
@@ -38,14 +38,14 @@ class PatientCard extends StatelessWidget {
                 name,
                 style: TextStyle(
                   fontSize: 20,
-                  color: globalColorLight,
+                  color: getAccentColor(context),
                 ),
               ),
               Text(
                 phone,
                 style: TextStyle(
                   fontSize: 15,
-                  color: globalTextColor,
+                  color: getTextColor(context),
                 ),
               ),
               const SizedBox(height: 10)
