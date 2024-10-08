@@ -147,7 +147,9 @@ class _PatientDetailsState extends State<PatientDetails> {
                     ],
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/patientUpdate", arguments: {'id': id,},);
+                    },
                     icon: Icon(
                       Icons.edit_note_rounded,
                       color: accentColor,  // Dynamically set accent color

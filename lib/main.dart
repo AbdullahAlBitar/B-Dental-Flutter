@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:b_dental/pages/createPages/patient_create.dart';
 import 'package:b_dental/pages/details/patient_details.dart';
 import 'package:b_dental/pages/details/payment_details.dart';
 import 'package:b_dental/pages/details/visit_details.dart';
@@ -19,6 +20,7 @@ void main() => runApp(
       "/patientDetails": (context) => PatientDetails(),
       "/visitDetails": (context) => VisitDetails(),
       "/paymentDetails": (context) => PaymentDetails(),
+      "/patientUpdate": (context) => CreateUpdatePatient(),
     },
     themeMode: ThemeMode.system,
   )

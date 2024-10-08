@@ -84,7 +84,9 @@ class _PatientState extends State<Patient> {
         decoration:
             BoxDecoration(shape: BoxShape.circle, color: getPrimaryColor(context)),
         child: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, "/patientUpdate");
+          },
           icon: const Icon(
             Icons.person_add_alt_outlined,
             size: 30,
