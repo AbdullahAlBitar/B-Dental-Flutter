@@ -76,7 +76,9 @@ class _PaymentState extends State<Payment> {
           decoration:
               BoxDecoration(shape: BoxShape.circle, color: getPrimaryColor(context)),
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+            Navigator.pushNamed(context, "/paymentUpdate");
+            },
             icon: const Icon(
               Icons.attach_money,
               size: 30,

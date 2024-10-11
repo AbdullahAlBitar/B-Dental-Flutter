@@ -134,7 +134,9 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                       ],
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                      Navigator.pushNamed(context, "/paymentUpdate", arguments: {'id': id, 'patientId': patientId},);
+                      },
                       icon: Icon(
                         Icons.edit_note_rounded,
                         color: colorLight,
