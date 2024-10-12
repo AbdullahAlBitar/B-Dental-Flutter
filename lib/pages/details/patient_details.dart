@@ -7,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-
 class PatientDetails extends StatefulWidget {
   const PatientDetails({super.key});
 
@@ -104,10 +103,10 @@ class _PatientDetailsState extends State<PatientDetails> {
     Color textColor = getTextColor(context);
 
     return Scaffold(
-      backgroundColor: darkBackgroundColor,  // Dynamically set background color
+      backgroundColor: darkBackgroundColor, // Dynamically set background color
       body: SingleChildScrollView(
         child: Container(
-          color: darkBackgroundColor,  // Dynamically set background color
+          color: darkBackgroundColor, // Dynamically set background color
           padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -130,7 +129,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                           Text(
                             name,
                             style: TextStyle(
-                                color: textColor,  // Dynamically set text color
+                                color: textColor, // Dynamically set text color
                                 fontSize: 24,
                                 decoration: TextDecoration.none),
                           ),
@@ -140,7 +139,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                       Text(
                         phone,
                         style: TextStyle(
-                            color: accentColor,  // Dynamically set accent color
+                            color: accentColor, // Dynamically set accent color
                             fontSize: 20,
                             decoration: TextDecoration.none),
                       ),
@@ -152,13 +151,13 @@ class _PatientDetailsState extends State<PatientDetails> {
                     },
                     icon: Icon(
                       Icons.edit_note_rounded,
-                      color: accentColor,  // Dynamically set accent color
+                      color: accentColor, // Dynamically set accent color
                       size: 36,
                     ),
                   )
                 ],
               ),
-              Divider(color: textColor),  // Dynamically set divider color
+              Divider(color: textColor), // Dynamically set divider color
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -167,39 +166,67 @@ class _PatientDetailsState extends State<PatientDetails> {
                       Text(
                         'Dues: ',
                         style: TextStyle(
-                            color: accentColor,  // Dynamically set accent color
+                            color: accentColor, // Dynamically set accent color
                             fontSize: 20,
                             decoration: TextDecoration.none),
                       ),
                       Text(
                         dues,
                         style: TextStyle(
-                            color: textColor,  // Dynamically set text color
+                            color: textColor, // Dynamically set text color
                             fontSize: 20,
                             decoration: TextDecoration.none),
                       ),
                       Text(
                         ' SYP',
                         style: TextStyle(
-                            color: textColor,  // Dynamically set text color
+                            color: textColor, // Dynamically set text color
                             fontSize: 20,
                             decoration: TextDecoration.none),
                       ),
                     ],
                   ),
                   const SizedBox(height: 20),
-                  Text(
-                    'Visits: ',
-                    style: TextStyle(
-                        color: accentColor,  // Dynamically set accent color
-                        fontSize: 20,
-                        decoration: TextDecoration.none),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                        child: Text(
+                          'Visits: ',
+                          style: TextStyle(
+                              color: accentColor, // Dynamically set accent color
+                              fontSize: 20,
+                              decoration: TextDecoration.none),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            "/paymentUpdate",
+                            arguments: {
+                              'patientId': id,
+                              'patient_name': name,
+                              'patient_phone': phone,
+                              'patient_sex': sex,
+                            },
+                          );
+                        },
+                        icon: Icon(
+                          Icons.add_circle_outline_sharp,
+                          color: accentColor, // Dynamically set accent color
+                          size: 30,
+                        ),
+                      )
+                    ],
                   ),
                   const SizedBox(height: 10),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: backgroundColor,  // Dynamically set background color
+                      color:
+                          backgroundColor, // Dynamically set background color
                     ),
                     padding: const EdgeInsets.all(10),
                     height: 200,
@@ -215,18 +242,46 @@ class _PatientDetailsState extends State<PatientDetails> {
                       ),
                     ),
                   ),
-                  Text(
-                    'Payments: ',
-                    style: TextStyle(
-                        color: accentColor,  // Dynamically set accent color
-                        fontSize: 20,
-                        decoration: TextDecoration.none),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                        child: Text(
+                          'Payments: ',
+                          style: TextStyle(
+                              color: accentColor, // Dynamically set accent color
+                              fontSize: 20,
+                              decoration: TextDecoration.none),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            "/paymentUpdate",
+                            arguments: {
+                              'patientId': id,
+                              'patient_name': name,
+                              'patient_phone': phone,
+                              'patient_sex': sex,
+                            },
+                          );
+                        },
+                        icon: Icon(
+                          Icons.monetization_on_outlined,
+                          color: accentColor, // Dynamically set accent color
+                          size: 30,
+                        ),
+                      )
+                    ],
                   ),
                   const SizedBox(height: 10),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: backgroundColor,  // Dynamically set background color
+                      color:
+                          backgroundColor, // Dynamically set background color
                     ),
                     padding: const EdgeInsets.all(10),
                     height: 200,

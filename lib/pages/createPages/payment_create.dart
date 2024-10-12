@@ -113,7 +113,7 @@ class _CreateUpdatePaymentState extends State<CreateUpdatePayment> {
   Future<void> _initialize() async {
     SharedPreferences logindata = await SharedPreferences.getInstance();
     jwt = logindata.getString('jwt') ?? '';
-    
+
     if (jwt.isEmpty) {
       // If no JWT is found, redirect to login page
       Navigator.pushNamed(context, "/");
@@ -124,11 +124,27 @@ class _CreateUpdatePaymentState extends State<CreateUpdatePayment> {
     final args =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
     _paymentId = args != null && args.containsKey('id') ? args['id'] : null;
-    _patientId = args != null && args.containsKey('patientId') ? args['patientId'] : null;
+    _patientId = args != null && args.containsKey('patientId')
+        ? args['patientId']
+        : null;
 
     if (_paymentId != null) {
       // If we have an ID, load payment data for updating
       _fetchPaymentData();
+    } else if (_patientId != null) {
+      patientName = args != null && args.containsKey('patient_name')
+          ? args['patient_name']
+          : null;
+      patientSex = args != null && args.containsKey('patient_sex')
+          ? args['patient_sex']
+          : null;
+      patientPhone = args != null && args.containsKey('patient_phone')
+          ? args['patient_phone']
+          : null;
+      setState(() {
+        _selectedDate = DateTime.now();
+        _isLoading = false; // No need to load payment data for creation
+      });
     } else {
       // For creation, set the date to now
       setState(() {
@@ -147,8 +163,6 @@ class _CreateUpdatePaymentState extends State<CreateUpdatePayment> {
         patientName = data['patient_name'];
         patientSex = data['patient_sex'];
         patientPhone = data['patient_phone'];
-        _patientId = data['patient_id'];
-        _patientId = data['patient_id'];
         _controllerAmount.text = data['amount'].toString();
         _selectedDate = DateTime.parse(data['date']);
         _isLoading = false;
@@ -210,7 +224,7 @@ class _CreateUpdatePaymentState extends State<CreateUpdatePayment> {
                             color: getAccentColor(context)),
                       ),
                       const SizedBox(height: 40),
-                      if (_paymentId == null)
+                      if (_paymentId == null && patientName == "")
                         DropdownButtonFormField<int>(
                           value: _patientId,
                           items: [
@@ -290,9 +304,9 @@ class _CreateUpdatePaymentState extends State<CreateUpdatePayment> {
                                   _isButtonDisabled = true;
                                 });
 
-                                double amount = double.tryParse(
-                                        _controllerAmount.text) ??
-                                    0.0;
+                                double amount =
+                                    double.tryParse(_controllerAmount.text) ??
+                                        0.0;
                                 String date = _selectedDate != null
                                     ? "${_selectedDate!.year}-${_selectedDate!.month}-${_selectedDate!.day}"
                                     : "";
@@ -342,5 +356,4 @@ class _CreateUpdatePaymentState extends State<CreateUpdatePayment> {
       ),
     );
   }
-
 }
